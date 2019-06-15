@@ -64,11 +64,38 @@
 @\import "https://malscraper.azurewebsites.net/covers/auto/presets/dataimagelink";
 @\import "https://fonts.googleapis.com/css?family=Sarabun:400,700";
 @\import "https://fonts.googleapis.com/css?family=Oswald";
+@\import "https://fonts.googleapis.com/css?family=Raleway";
 
 
 /*==============================*\
   !VARIABLES
 \*------------------------------*/
+
+@keyframes bgcolor {
+  0% {
+    background-color: #2db039
+  }
+
+  20% {
+    background-color: #26448f
+  }
+
+  40% {
+    background-color: #f9d457
+  }
+
+  60% {
+    background-color: #a12f31
+  }
+
+  80% {
+    background-color: #c3c3c3
+  }
+  
+  100% {
+    background-color: #2db039
+    }
+}
 
 :root {
 	/* USER OPTIONS
@@ -118,11 +145,12 @@
 	--textLinkHov: 240, 50%, 80%;
 	--textIcon: 0, 0%, 83%;
 	
-	--current: 35, 49%, 46%;
-	--completed: 324, 49%, 46%;
-	--paused: 80, 91%, 23%;
-	--dropped: 6, 44%, 46%;
-	--planned: 56, 18%, 56%;
+	--all:#4065ba;
+	--watching: #2db039;
+	--completed: #26448f;
+	--onhold: #f9d457;
+	--dropped: #a12f31;
+	--plantowatch: #c3c3c3;
 	
 	/* INTERNALS
 	 * 
@@ -756,7 +784,7 @@ body:before {
 	left: 0;
 	width: 100%;
 	height: 2px;
-	background: hsl(var(--bg)) linear-gradient(to right, hsla(var(--accent), 1), hsla(var(--accent), 0.55));
+	background: var(--accent);
 }
 
 #status-menu:before {
@@ -768,7 +796,7 @@ body:before {
     background: center/cover url(https://image.myanimelist.net/ui/5LYzTBVoS196gvYvw3zjwHJX_OvnS5tNaqbjcaeOqcQ);
     border-radius: 50%;
     opacity: 1;
-    border: 2px solid #8788d4;
+    border: ;
     transition: all var(--timeButtonLarge) var(--bezierSmooth);
 } 
 
@@ -780,21 +808,87 @@ body:before {
     border: 1px solid #8788d4;
 }
 
+#status-menu:after {
+  content: "";
+    position: absolute;
+    left: 417px;
+    top: -53px;
+    display: block!important;
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    width: 156px!important;
+    height: 156px!important;
+    border-radius: 50%;
+    font-size: 0;
+    box-shadow: 0px -5px 20px 7px #00000000;
+    z-index: -1;
+    transition: all var(--timeButtonLarge) var(--bezierSmooth);
+}
+
+#status-menu.fixed:after {
+  opacity: 0;
+    width: 49px !important;
+    height: 49px !important;
+    top: 11px;
+}
+
+
+
+[data-query*='status":7'] #status-menu:after {
+  background:linear-gradient(to bottom, #8686d200,#8686d200 34%,#232325 34%,#232325 85%);
+}
+
+[data-query*='status":1'] #status-menu:after {
+  background:linear-gradient(to bottom, #2db039,#2db039 34%,#232325 34%,#232325 85%);
+}
+
+[data-query*='status":2'] #status-menu:after {
+  background:linear-gradient(to bottom, #27448f,#27448f 34%,#232325 34%,#232325 85%);
+}
+
+[data-query*='status":3'] #status-menu:after {
+  background:linear-gradient(to bottom, #f9d457,#f9d457 34%,#232325 34%,#232325 85%);
+}
+
+[data-query*='status":4'] #status-menu:after {
+  background:linear-gradient(to bottom, #a12f30,#a12f30 34%,#232325 34%,#232325 85%);
+}
+
+[data-query*='status":6'] #status-menu:after {
+  background:linear-gradient(to bottom, #c3c3c3,#c3c3c3 34%,#232325 34%,#232325 85%);
+}
+
+
+
+[data-query*='status":7'] .list-block:before,
+[data-query*='status":7'] #status-menu:before {
+	-webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+} 
+
 [data-query*='status":1'] .list-block:before,
 [data-query*='status":1'] #status-menu:before {
-	--accent: var(--current);
-} [data-query*='status":2'] .list-block:before,
+	--accent: var(--watching);
+} 
+
+[data-query*='status":2'] .list-block:before,
 [data-query*='status":2'] #status-menu:before {
 	--accent: var(--completed);
-} [data-query*='status":3'] .list-block:before,
+} 
+
+[data-query*='status":3'] .list-block:before,
 [data-query*='status":3'] #status-menu:before {
-	--accent: var(--paused);
-} [data-query*='status":4'] .list-block:before,
+	--accent: var(--onhold);
+} 
+
+[data-query*='status":4'] .list-block:before,
 [data-query*='status":4'] #status-menu:before {
 	--accent: var(--dropped);
-} [data-query*='status":6'] .list-block:before,
+} 
+
+[data-query*='status":6'] .list-block:before,
 [data-query*='status":6'] #status-menu:before {
-	--accent: var(--planned);
+	--accent: var(--plantowatch);
 }
 
 
@@ -821,31 +915,47 @@ body:before {
 	pointer-events: auto;
 }
 
-#status-menu .status-menu {
-	position: static;
-	display: flex;
-	height: 100%;
-	min-width: 570px;
-	max-width: 700px;
-	margin: 0 auto;
-	justify-content: space-around;
-	align-items: center;
-	pointer-events: auto;
+.status-menu {
+  position: relative;
+    display: block!important;
+    width: 1150px;
+    padding: 0 0 0 200px;
+    box-sizing: border-box;
+}
+
+.status-menu-container .status-menu {
+  display: table;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 40px 0;
+}
+
+.status-menu-container .status-menu .status-button {
+  position: relative;
+    display: table-cell;
+    padding: 12px 0;
+    margin: 0;
+    font-family: 'Helvetica neue', Helvetica, "lucida grande", tahoma, verdana, arial, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.6em;
+    color: #9B9B9B;
 }
 
 #status-menu .status-button {
-	display: block;
-	height: 32px;
-	padding: 0 12px;
-	border-radius: 3px;
-	flex: 0 1 auto;
-	color: hsla(var(--textDim), 60%);
-	font: 0/30px var(--font);
-	
-	transition: all var(--timeButtonLarge) var(--bezierSmooth);
-} #status-menu .status-button:hover {
-	color: hsl(var(--textBright));
-	line-height: 26px;
+	display: inline-block!important;
+    height: 32px;
+    padding: 44px 0!important;
+    padding-top: 20px !important;
+    margin: 0 15px!important;
+    color: var(--text-head)!important;
+    font-size: 17.6px!important;
+    line-height: 30px;
+    white-space: nowrap;
+    font-family: Raleway;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    pointer-events:auto;
 }
 
 #status-menu .status-button.on {
@@ -858,20 +968,24 @@ body:before {
 	transition: inherit;
 }
 
+#status-menu .status-button:hover {
+  line-height:26px;
+}
+
 #status-menu .status-button.all_anime:before {
-	content: "ALL";
+	content: ;
 } #status-menu .status-button.watching:before,
 #status-menu .status-button.reading:before {
-	content: "CURRENT";
+	content: ;
 } #status-menu .status-button.completed:before {
-	content: "COMPLETED";
+	content: ;
 } #status-menu .status-button.onhold:before {
-	content: "PAUSED";
+	content: ;
 } #status-menu .status-button.dropped:before {
-	content: "DROPPED";
+	content: ;
 } #status-menu .status-button.plantowatch:before,
 #status-menu .status-button.plantoread:before {
-	content: "PLANNED";
+	content: ;
 }
 
 #status-menu .status-button:after {
@@ -887,12 +1001,13 @@ body:before {
 	position: absolute;
 	top: 15px;
 	right: 20px;
-	
 	width: calc(169px + 0.07 * (100vw - 980px));
-	
 	transition: all var(--timeMenu) var(--bezierFast);
-} #status-menu.fixed .search-container {
-	right: 12px;
+	pointer-events:auto;
+} 
+
+#status-menu.fixed .search-container {
+	right: -450px;
 	width: calc(177px + 0.07 * (100vw - 980px));
 }
 
@@ -1279,16 +1394,16 @@ body:before {
 	pointer-events: none;
 } .data.status.watching,
 .data.status.reading {
-	border-color: hsl(var(--current));
+	border-color: hsl(var(--watching));
 } .data.status.completed {
 	border-color: hsl(var(--completed));
 } .data.status.onhold {
-	border-color: hsl(var(--paused));
+	border-color: hsl(var(--onhold));
 } .data.status.dropped {
 	border-color: hsl(var(--dropped));
 } .data.status.plantowatch,
 .data.status.plantoread {
-	border-color: hsl(var(--planned));
+	border-color: hsl(var(--plantowatch));
 }
 
 
