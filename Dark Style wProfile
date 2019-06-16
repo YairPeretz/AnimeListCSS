@@ -65,6 +65,7 @@
 @\import "https://fonts.googleapis.com/css?family=Sarabun:400,700";
 @\import "https://fonts.googleapis.com/css?family=Oswald";
 @\import "https://fonts.googleapis.com/css?family=Raleway";
+@\import "https://fonts.googleapis.com/css?family=Ubuntu";
 
 
 /*==============================*\
@@ -145,7 +146,7 @@
 	--textLinkHov: 240, 50%, 80%;
 	--textIcon: 0, 0%, 83%;
 	
-	--all:#4065ba;
+	--all:#ffffff;
 	--watching: #2db039;
 	--completed: #26448f;
 	--onhold: #f9d457;
@@ -182,7 +183,7 @@
 
 /* Firefox */
 * {
-	scrollbar-color: hsl(var(--accent)) hsl(var(--bgAlt));
+	scrollbar-color: #2db039;
 }
 
 .list-item * {
@@ -190,7 +191,7 @@
 }
 
 .data.tags, textarea {
-	scrollbar-width: thin;
+	scrollbar-width: bold;
 }
 
 /* Chrome */
@@ -218,13 +219,64 @@
 }
 
 *::-webkit-scrollbar-thumb {
-	background: hsl(var(--accent)) content-box;
 	border: 0px solid transparent;
-} *::-webkit-scrollbar-thumb:vertical {
+} 
+
+
+
+[data-query*='status":7']::-webkit-scrollbar-thumb {
+	background: var(--all) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":7']::-webkit-scrollbar-thumb:hover {
+  background-color:#c5c5c5;
+}
+
+[data-query*='status":1']::-webkit-scrollbar-thumb {
+	background: var(--watching) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":1']::-webkit-scrollbar-thumb:hover {
+  background-color:#23862c;
+}
+
+[data-query*='status":2']::-webkit-scrollbar-thumb {
+	background: var(--completed) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":2']::-webkit-scrollbar-thumb:hover {
+  background-color:#1b3167;
+}
+
+[data-query*='status":3']::-webkit-scrollbar-thumb {
+	background: var(--onhold) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":3']::-webkit-scrollbar-thumb:hover {
+  background-color:#c3a643;
+}
+
+[data-query*='status":4']::-webkit-scrollbar-thumb {
+	background: var(--dropped) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":4']::-webkit-scrollbar-thumb:hover {
+  background-color:#691e1f;
+}
+
+[data-query*='status":6']::-webkit-scrollbar-thumb {
+	background: var(--plantowatch) content-box;
+	border: 0px solid transparent;
+} [data-query*='status":6']::-webkit-scrollbar-thumb:hover {
+  background-color:#808080;
+}
+
+
+
+*::-webkit-scrollbar-thumb:vertical {
 	border-width: 0 2px;
-} *::-webkit-scrollbar-thumb:horizontal {
+}
+
+*::-webkit-scrollbar-thumb:horizontal {
 	border-width: 2px 0;
-} *::-webkit-scrollbar-thumb:hover {
+} 
+
+*::-webkit-scrollbar-thumb:hover {
 	background-color: hsla(var(--accent), 70%);
 } 
 
@@ -309,18 +361,17 @@ html {
 body {
 	background-position: center;
 	background-image: none;
-} body.ownlist {
+}
+
+body.ownlist {
 	position: relative;
-	
 	min-width: 700px;
 	min-height: 100%;
 	padding: 42px 0 60px;
-	
-	background-color: hsl(var(--bg)) !important;
+	background-color: #232325!important;
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	
 	color: hsl(var(--textMid)) !important;
 	font: 12px var(--font);
 }
@@ -330,10 +381,9 @@ body:before {
 	position: absolute;
 	top: 0;
 	left: 0;
-	
 	width: 100%;
 	height: 100%;
-	background: hsla(var(--bg), var(--bgDimness));
+	background: -hsla(var(--bg), var(--bgDimness));
 }
 
 #list-container {
@@ -344,8 +394,9 @@ body:before {
 
 .list-block {
 	position: relative;
+	background:#232325;
 	width: 100%;
-	padding-top: 0;
+	padding-top: 30px;
 	min-height: auto;
 	margin: 0 auto;
 }
@@ -396,11 +447,11 @@ body:before {
 /* Left Area */
 
 .header .header-title {
-	top: 17px;
+	top: 19px;
 	left: 47px;
 	width: 50px;
 	height: 24px;
-	background: url(https://files.catbox.moe/8q5kjg.svg) left 4px / auto 23px no-repeat;
+	background: url(https://files.catbox.moe/8q5kjg.svg) left 5px / auto 23px no-repeat;
 	
 	color: hsl(var(--textBright));
 	
@@ -415,7 +466,7 @@ body:before {
 .header .header-menu {
 	position: static;
 	display: flex;
-	height: 52px;
+	height: 56px;
 	margin: 5px 12px 0 0;
 	flex-flow: column nowrap;
 	justify-content: center;
@@ -572,7 +623,7 @@ body:before {
 	content: "";
 	position: fixed;
 	left: 0;
-	top: 11px;
+	top: 13px;
 	width: 42px;
 	height: 42px;
 	box-sizing: initial;
@@ -610,7 +661,7 @@ body:before {
 	background: inherit;
 	box-sizing: initial;
 	color: transparent;
-	font: bold 20px/60px var(--font);
+	font: bold 20px/66px var(--font);
 	text-align: left;
 	transition: color calc(var(--timeMenu) * 0.3) ease-in-out var(--delayMenu);
 } 
@@ -626,14 +677,14 @@ body:before {
 	top: 0;
 	left: 0;
 	z-index: 190;
-	
 	width: 100%;
 	height: 100%;
 	background: hsla(0, 0%, 0%, 0%);
-	
 	transition: all var(--timeMenu) var(--bezierSmooth) var(--delayMenu);
 	pointer-events: none;
-} .list-menu-float:hover ~ #list-container:after {
+} 
+
+.list-menu-float:hover ~ #list-container:after {
 	background: hsla(0, 0%, 0%, 78%);
 	transition-delay: 0s;
 }
@@ -658,7 +709,6 @@ body:before {
 .ownlist .list-menu-float .icon-menu.setting .text .link-list-setting,
 .ownlist .list-menu-float .icon-menu.setting .text .link-style-setting {
 	position: static;
-	
 	width: 100%;
 	height: 40px;
 	padding: 10px 20px 10px 16px;
@@ -666,19 +716,19 @@ body:before {
 	border: none;
 	border-left: 4px solid transparent;
 	overflow: visible;
-	
 	color: hsl(var(--textBright));
 	font: 15px/20px var(--font);
 	text-align: left;
-	
 	opacity: 1;
 	transition: inherit;
-} .ownlist .list-menu-float .icon-menu:hover:after,
+} 
+
+.ownlist .list-menu-float .icon-menu:hover:after,
 .ownlist .list-menu-float .icon-menu:not(.setting):hover .text,
 .ownlist .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
 .ownlist .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	background: hsl(var(--bgAlt));
-	border-color: hsl(var(--accent));
+	border-color:var(--accent);
 	line-height: 16px;
 }
 
@@ -686,10 +736,8 @@ body:before {
 
 .ownlist .list-menu-float .icon-menu.setting .text {
 	position: static;
-	
 	width: 100%;
 	height: auto;
-	
 	opacity: 1;
 }
 
@@ -717,11 +765,9 @@ body:before {
 	position: absolute;
 	top: -8px;
 	left: 10px;
-	
 	width: calc(100% - 20px);
 	height: 1px;
 	background: hsla(var(--textBright), 12%);
-	
 	pointer-events: none;
 }
 
@@ -760,7 +806,6 @@ body:before {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	
 	width: 100%;
 	height: 100%;
 	background: radial-gradient(ellipse farthest-corner at center top, transparent 66.6667%, hsla(var(--bg), 90%));
@@ -780,7 +825,7 @@ body:before {
 .list-block:before, #status-menu:before {
 	content: "";
 	position: absolute;
-	top: -96px;
+	top: -66px;
 	left: 0;
 	width: 100%;
 	height: 2px;
@@ -796,16 +841,15 @@ body:before {
     background: center/cover url(https://image.myanimelist.net/ui/5LYzTBVoS196gvYvw3zjwHJX_OvnS5tNaqbjcaeOqcQ);
     border-radius: 50%;
     opacity: 1;
-    border: ;
     transition: all var(--timeButtonLarge) var(--bezierSmooth);
 } 
 
 #status-menu.fixed:before {
-	top: 10px;
+	top: 8px;
     width: 48px;
     height: 48px;
     box-shadow: none;
-    border: 1px solid #8788d4;
+    border: 2px solid var(--accent);
 }
 
 #status-menu:after {
@@ -827,9 +871,14 @@ body:before {
 
 #status-menu.fixed:after {
   opacity: 0;
-    width: 49px !important;
-    height: 49px !important;
-    top: 11px;
+    width: 48px !important;
+    height: 48px !important;
+    top: 8px;
+    left:420px;
+}
+
+#status-menu:not(.fixed):before, #status-menu:not(.fixed):after {
+  transition-delay:.15s;
 }
 
 
@@ -866,28 +915,61 @@ body:before {
     animation: bgcolor 10s infinite;
 } 
 
+[data-query*='status":7'] #status-menu.fixed:before,
+[data-query*='status":7'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":7'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":7'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":7'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
+  --accent: var(--all)
+}
+
 [data-query*='status":1'] .list-block:before,
-[data-query*='status":1'] #status-menu:before {
+[data-query*='status":1'] #status-menu:before,
+[data-query*='status":1'] #status-menu.fixed:before,
+[data-query*='status":1'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":1'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":1'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":1'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	--accent: var(--watching);
 } 
 
 [data-query*='status":2'] .list-block:before,
-[data-query*='status":2'] #status-menu:before {
+[data-query*='status":2'] #status-menu:before,
+[data-query*='status":2'] #status-menu.fixed:before,
+[data-query*='status":2'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":2'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":2'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":2'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	--accent: var(--completed);
 } 
 
 [data-query*='status":3'] .list-block:before,
-[data-query*='status":3'] #status-menu:before {
+[data-query*='status":3'] #status-menu:before,
+[data-query*='status":3'] #status-menu.fixed:before,
+[data-query*='status":3'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":3'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":3'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":3'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	--accent: var(--onhold);
 } 
 
 [data-query*='status":4'] .list-block:before,
-[data-query*='status":4'] #status-menu:before {
+[data-query*='status":4'] #status-menu:before,
+[data-query*='status":4'] #status-menu.fixed:before,
+[data-query*='status":4'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":4'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":4'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":4'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	--accent: var(--dropped);
 } 
 
 [data-query*='status":6'] .list-block:before,
-[data-query*='status":6'] #status-menu:before {
+[data-query*='status":6'] #status-menu:before,
+[data-query*='status":6'] #status-menu.fixed:before,
+[data-query*='status":6'] .list-menu-float .icon-menu:hover:after,
+[data-query*='status":6'] .list-menu-float .icon-menu:not(.setting):hover .text,
+[data-query*='status":6'] .list-menu-float .icon-menu.setting .text .link-list-setting:hover,
+[data-query*='status":6'] .list-menu-float .icon-menu.setting .text .link-style-setting:hover {
 	--accent: var(--plantowatch);
 }
 
@@ -902,15 +984,13 @@ body:before {
 	padding: 0 calc(198px + 0.07 * (100vw - 980px));
 	background: hsl(var(--bgAlt));
 	border: none;
-	margin: 0 0 3px;
-	margin-bottom:30px;
 	pointer-events: none;
 	transition: all var(--timeMenu) var(--bezierFast);
 } 
 
 #status-menu.fixed {
 	position: fixed;
-	padding-left: 42px;
+	padding-left: 70px;
 	background: hsl(var(--bgAlt));
 	pointer-events: auto;
 }
@@ -942,6 +1022,10 @@ body:before {
     color: #9B9B9B;
 }
 
+.status-menu-container.fixed .status-menu .status-button:after {
+  height:2px;
+}
+
 #status-menu .status-button {
 	display: inline-block!important;
     height: 32px;
@@ -950,7 +1034,7 @@ body:before {
     margin: 0 15px!important;
     color: var(--text-head)!important;
     font-size: 17.6px!important;
-    line-height: 30px;
+    line-height: 27px;
     white-space: nowrap;
     font-family: Raleway;
     text-transform: uppercase;
@@ -968,9 +1052,57 @@ body:before {
 	transition: inherit;
 }
 
-#status-menu .status-button:hover {
-  line-height:26px;
+
+
+.status-button.all_anime:after {
+  background:var(--all) !important;
+  z-index:2;
 }
+.status-button.watching:after {
+  background:var(--watching) !important;
+  z-index:2;
+}
+.status-button.completed:after {
+  background:var(--completed) !important;
+  z-index:2;
+}
+.status-button.onhold:after {
+  background:var(--onhold) !important;
+  z-index:2;
+}
+.status-button.dropped:after {
+  background:var(--dropped) !important;
+  z-index:2;
+}
+.status-button.plantowatch:after {
+  background:var(--plantowatch) !important;
+  z-index:2;
+}
+
+.status-menu-container.fixed .status-menu .status-button.on:after {
+    width: 1903px;
+    height: 2px;
+    z-index:1;
+}
+
+
+
+[data-query*='status":7'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-495px;
+} [data-query*='status":1'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-621px;
+} [data-query*='status":2'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-860px;
+} [data-query*='status":3'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-1000px;
+} [data-query*='status":4'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-1113px;
+} [data-query*='status":6'] .status-menu-container.fixed .status-menu .status-button.on:after {
+  left:-1228px;
+}
+
+
+
 
 #status-menu .status-button.all_anime:before {
 	content: ;
@@ -988,10 +1120,6 @@ body:before {
 	content: ;
 }
 
-#status-menu .status-button:after {
-	content: none;
-}
-
 
 /* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~*\
   @Search
@@ -999,7 +1127,7 @@ body:before {
 
 #status-menu .search-container {
 	position: absolute;
-	top: 15px;
+	top: 18px;
 	right: 20px;
 	width: calc(169px + 0.07 * (100vw - 980px));
 	transition: all var(--timeMenu) var(--bezierFast);
@@ -1019,13 +1147,16 @@ body:before {
 	border-radius: 3px;
 	box-shadow: -0.5px 0.7px 2.1px hsla(0, 0%, 0%, 50%);
 	margin: 0;
-	
 	transition:
 		box-shadow var(--timeMenu) var(--bezierFast),
 		border-color var(--timeButton) var(--bezierFast);
-} #status-menu.fixed .search-container #search-box {
+} 
+
+#status-menu.fixed .search-container #search-box {
 	box-shadow: none;
-} #status-menu .search-container #search-box:focus-within {
+}
+
+#status-menu .search-container #search-box:focus-within {
 	border-color: hsla(var(--btnAccent));
 }
 
@@ -1065,7 +1196,7 @@ body:before {
 
 .list-unit .list-status-title {
 	position: absolute;
-	top: -78px;
+	top: -45px;
 	left: 20px;
 	z-index: 150;
 	width: 80px;
@@ -1078,19 +1209,20 @@ body:before {
 }
 
 .list-unit .list-status-title .stats {
-	position: static;
-	
+	position: relative;
+	left:-105px;
 	font-size: 0;
 	white-space: nowrap;
+}
+
+.list-unit .list-status-title .stats a:first-child {
+  position:relative;
+  left:339px;
 }
 
 .list-unit .list-status-title .stats a {
 	display: inline-block;
 	width: calc(80px + 0.035 * (100vw - 980px));
-}
-
-.list-unit .list-status-title .stats a:first-child {
-	display: none;
 }
 
 
@@ -1100,7 +1232,7 @@ body:before {
 
 .list-table > tbody:first-of-type {
 	position: absolute;
-	top: -78px;
+	top: -45px;
 	left: calc(109px + 0.035 * (100vw - 980px));
 	z-index: 150;
 	width: calc(80px + 0.035 * (100vw - 980px));
@@ -1108,7 +1240,9 @@ body:before {
 	background: none !important;
 	
 	pointer-events: none;
-} .list-table > tbody:first-of-type:hover {
+} 
+
+.list-table > tbody:first-of-type:hover {
 	pointer-events: auto;
 }
 
@@ -1345,7 +1479,6 @@ body:before {
 	position: absolute;
 	left: 0;
 	top: 0;
-	
 	width: 100% !important;
 	height: 100% !important;
 	border: none !important;
@@ -1362,10 +1495,12 @@ body:before {
 }
 
 .data.image .link {
-	filter: brightness(var(--imageBrightness)) opacity(var(--imageBrightness));
+	filter: brightness(90%) opacity(0.7);
 	transition: filter var(--timeItem) var(--bezierFast) !important;
-} .list-item:hover .data.image .link {
-	filter: brightness(var(--imageBrightnessHov)) opacity(var(--imageBrightnessHov));
+} 
+
+.list-item:hover .data.image .link {
+	filter: brightness(50%) opacity(0.5);
 }
 
 .data.image .link:after {
@@ -2093,11 +2228,6 @@ body #fancybox-inner {
 	right: 20px;
 }
 
-.list-unit .list-status-title .stats a:first-child {
-	display: none;
-}
-
-
 /* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~*\
   @Filter-Menu
 \*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
@@ -2323,14 +2453,12 @@ body #fancybox-inner {
 
 #footer-block {
 	position: absolute;
-	bottom: 0;
+	bottom: 13px;
 	left: 0;
-	
 	width: 100%;
 	height: 60px;
 	padding: 22px 0;
 	background: none;
-	
 	font: 13px/16px var(--font);
 }
 
@@ -2350,21 +2478,19 @@ body #fancybox-inner {
 }
 
 .list-unit .list-stats {
-	position: absolute;
-	bottom: -32px;
-	left: 0;
-	
-	display: block !important;
-	width: 100%;
-	height: 16px;
-	background: none;
-	margin: 0 auto;
-	
-	color: hsla(var(--textDim), 50%);
-	font: 12px/16px var(--font);
-	
-	/*Toggle*/
-	visibility: var(--toggleStats);
+    position: absolute;
+    height: 26px;
+    line-height: 26px;
+    color: #000000 !important;
+    text-align: center;
+    background: #ffffff !important;
+    border-radius: 20px;
+    width: 650px !important;
+    top: 5px;
+    font-weight: 700;
+    font-family: Verdana, Arial;
+    font-size: 11px;
+    left: 525px;
 }
 
 
