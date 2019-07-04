@@ -48,6 +48,21 @@
 
 
 /*==============================*\
+  !Side Characters
+\*------------------------------*/
+
+/*LEFT CHARACTER BY LIST*/
+footer:before {
+	background-image: url(URLHERE) !important;
+}
+
+/*RIGHT CHARACTER BY LIST*/
+footer:after {
+	background-image: url(URLHERE) !important;
+}
+
+
+/*==============================*\
   !ROOT
 \*------------------------------*/
 
@@ -259,20 +274,6 @@ textarea::-webkit-scrollbar-thumb:vertical {
 } .data.tags::-webkit-scrollbar-thumb:horizontal,
 textarea::-webkit-scrollbar-thumb:horizontal {
 	border-width: 1px 0;
-}
-
-
-
-
-/* LEFT CHARACTER BY LIST */
-footer:before {
-	background-image: url(https://image.myanimelist.net/ui/BwOBRshyN1ZxRM2hlXvVKQ) !important;
-}
-
-
-/* RIGHT CHARACTER BY LIST */
-footer:after {
-	background-image: url(https://image.myanimelist.net/ui/BwOBRshyN1ZxRM2hlXvVKQ) !important;
 }
 
 
